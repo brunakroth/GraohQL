@@ -2,33 +2,16 @@
 import express from 'express';
 // import cors from 'cors';
 import { ApolloServer, gql } from 'apollo-server-express';
+import typeDefs from './graphql/typeDefs';
+import resolvers from './graphql/resolvers';
 
 const app = express();
 
 async function startServer() {
     const server = new ApolloServer({
-        typeDefs: gql`
-        type Client {
-            id: ID!
-            name: String!
-        }
-
-        type Demand {
-            id: ID!
-            name: String!
-            client: Client!
-            deadline: String
-        }    
-
-        type Query {
-            demands: [Demand]!
-        }
-        `,
-        resolvers: {
-            Query: {
-                demands: () => [],
-            }
-        }
+        
+        typeDefs,
+        resolvers,
     });
 
     await server.start();
