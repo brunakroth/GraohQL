@@ -14,39 +14,39 @@ export default function Signin() {
             body: JSON.stringify({
                 email,
                 password
-            })
+            }),
         })
-        .then((response) => response.json())
-        .then((data) => {
-            console.log('Success!', data);
-        })
+            .then((response) => response.json())
+            .then((data) => {
+                console.log('Success!', data);
+            });
     };
 
-const handleEmailChange = (event) => setEmail(event.target.value);
+    const handleEmailChange = (event) => setEmail(event.target.value);
 
-const handlePasswordChange = (event) => setPassword(event.target.value);
+    const handlePasswordChange = (event) => setPassword(event.target.value);
 
     return (
         <form onSubmit={handleSubmit}>
             <fieldset>
                 <label htmlFor="email">E-mail:</label>
-                <input 
+                <input
                     id="email"
-                    type="email" 
+                    type="email"
                     value={email}
                     onChange={handleEmailChange}
-                    inputmode="email" 
-                    autoComplete="username" 
+                    inputMode="email"
+                    autoComplete="username"
                 />
             </fieldset>
 
             <fieldset>
                 <label htmlFor="password">Senha: </label>
-                <input 
-                    id="password" 
-                   type="password" 
-                    autoComplete="current-password" 
-                    value={password} 
+                <input
+                    id="password"
+                    type="password"
+                    autoComplete="current-password"
+                    value={password}
                     onChange={handlePasswordChange}
                 />
             </fieldset>
