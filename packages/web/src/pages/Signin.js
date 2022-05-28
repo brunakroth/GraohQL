@@ -20,7 +20,7 @@ export default function Signin() {
             .then((data) => {
                 console.log('Success!', data);
             });
-    };
+    }
 
     const handleEmailChange = (event) => setEmail(event.target.value);
 
