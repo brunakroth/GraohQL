@@ -11,21 +11,29 @@ type Client implements Node {
     disabled: Boolean!
 }
 
+type ClientList implements List {
+    items: [Client!]!
+    totalItems: Int!
+}
+
 extend type Query {
     client(id: ID!): Client
-    clients:[Client!]!
+    clients: ClientList
 }
 `;
 
 export const resolvers = {
     Query: {
         client: async (_, { id }) => {
-            const clients = await clientRepository.read();
+            const clients = await Repository.read();
             return clients.find((client) => client.id === id);
         },
         clients: async () => {
             const clients = await clientRepository.read();
-            return clients
+            return {
+                items: clients,
+                totalItems: clients.lenght
+            };
         },
     },
 };
