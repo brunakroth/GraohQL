@@ -1,5 +1,5 @@
 import { gql } from 'apollo-server-express';
-import createRepository from '../../data/io/Database/createRepository';
+import createRepository from '../../io/Database/createRepository';
 
 const clientRepository = createRepository('client');
 
@@ -13,7 +13,7 @@ type Client implements Node {
 
 extend type Query {
     client(id: ID!): Client
-    # clients:[Client!]!
+    clients:[Client!]!
 }
 `;
 
@@ -22,6 +22,10 @@ export const resolvers = {
         client: async (_, { id }) => {
             const clients = await clientRepository.read();
             return clients.find((client) => client.id === id);
+        },
+        clients: async () => {
+            const clients = await clientRepository.read();
+            return clients
         },
     },
 };
