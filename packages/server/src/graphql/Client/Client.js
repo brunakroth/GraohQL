@@ -2,6 +2,7 @@ import { gql } from 'apollo-server-express';
 import createRepository from '../../data/io/Database/createRepository';
 
 const clientRepository = createRepository('client');
+
 export const typeDefs = gql`
 type Client implements Node {
     id: ID!

@@ -5,7 +5,8 @@ function createRepository(name) {
     const path = resolve(__dirname, `../../data/${name}.json`);
 
     return {
-        read: () => new Promise((resolve, reject) => {
+        read: () =>
+         new Promise((resolve, reject) => {
             readFile(path, (error, data) => {
                 if (error) {
                     reject(error);
@@ -17,7 +18,7 @@ function createRepository(name) {
         }),
 
         write: (data) => 
-            new Promise(() => {
+            new Promise((resolve, reject) => {
             writeFile(path, JSON.stringify(data), (error) => {
                 if (error) {
                     reject(error);
